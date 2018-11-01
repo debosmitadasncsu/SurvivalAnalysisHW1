@@ -5,9 +5,9 @@ library(muhaz)
 katrina <- read.csv("/Users/adamtobias/Documents/MSA 19/Survival Analysis/survivalcsv/katrina.csv", header = TRUE)
 
 # Katrina Survival Curve
-katrina_fit <- survfit(Surv(hour, survive == 0) ~ 1, data = katrina)
+katrina_fit <- survfit(Surv(hour, survive == 0) ~ 1, data = katrina[katrina$reason != 0,])
 katrina_fit
-katrina_fit <- survfit(Surv(hour, survive == 0) ~ reason, data = katrina)
+katrina_fit <- survfit(Surv(hour, survive == 0) ~ reason, data = katrina[katrina$reason != 0,])
 katrina_fit
 
 ggsurvplot(katrina_fit, data = katrina, conf.int = FALSE, palette = "RdBu")
